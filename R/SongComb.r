@@ -3,17 +3,17 @@ library (seewave)
 
 totaltime <- 61.15
 
-starts <- seq(from = 0, to = totaltime -2 , by=2)
-stops <- seq (from =2,to=totaltime,by=2)
+starts <- seq(from = 0, to = totaltime - 1 , by=1)
+stops <- seq (from = 2, to = totaltime, by = 1)
 
-startsb <- seq(from = 0.001, to = totaltime -2.001 , by=2)
-stopsb <- seq (from =2.001,to=totaltime,by=2)
+startsb <- seq(from = 0.001, to = totaltime - 1.001 , by = 1)
+stopsb <- seq (from = 1.001, to = totaltime, by = 1)
 
-startsc <- seq(from = 0.002, to = totaltime -2.002 , by=2)
-stopsc <- seq (from =2.002,to=totaltime,by=2)
+startsc <- seq(from = 0.002, to = totaltime - 1.002 , by = 1)
+stopsc <- seq(from = 1.002, to = totaltime, by = 1)
 
-startsd <- seq(from = 0.003, to = totaltime -2.003 , by=2)
-stopsd <- seq (from =2.003,to=totaltime,by=2)
+startsd <- seq(from = 0.003, to = totaltime - 1.003 , by = 1)
+stopsd <- seq(from = 1.003, to = totaltime, by = 1)
 
 #Values for computation
 Flatbirds <- 2000
