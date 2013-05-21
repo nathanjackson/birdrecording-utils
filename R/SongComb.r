@@ -203,8 +203,8 @@ for (d in 1:length(starts)) {
 	head(DelayP)
 
 	#Output the time delay matrix and respective P values as a text file
-	write.csv(DelayP,file = paste(DelayConfidence,d,".csv",sep = ""))
-	write.csv(Timedelays,file = paste(Timedelays,d,".csv",sep = ""))
+	write.csv(DelayP, file = paste("DelayP",d,".csv",sep = ""))
+	write.csv(Timedelays,file = paste("Timedelays",d,".csv",sep = ""))
 	Timedelays <- NULL
 	DelayP <- NULL
 
@@ -213,6 +213,6 @@ for (d in 1:length(starts)) {
 	#saving song
 	final <- readWave("tico2.wav", from = starts[d], to = stops[d], units = "minutes")
 	savewav(final, filename = paste("Audio",d,".wav",sep = ""))
-	wav2flac(d, overwrite=TRUE)
+	wav2flac(paste("Audio",d,".wav", sep = ""), overwrite=TRUE)
 	final <- NULL
 }
