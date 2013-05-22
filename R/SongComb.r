@@ -1,6 +1,8 @@
 library (tuneR)
 library (seewave)
 
+args = commandArgs()
+
 totaltime <- 61.15
 
 starts <- seq(from = 0, to = totaltime - 1 , by=1)
@@ -87,19 +89,19 @@ Max_CCF<- function(First,Second) {
 for (d in 1:length(starts)) {
 
 	#Use the function built for song times to get times for each mic
-	mic1 <- readWave("tico2.wav", from = starts[d], to = stops[d], units = "minutes")
+	mic1 <- readWave(args[4], from = starts[d], to = stops[d], units = "minutes")
 	one <- songtimes(mic1,Flatbirds,Sharpbirds,samplerate,Threshold,songcomb)
 	#kill mic1
 	mic1 <- NULL
-	mic2 <- readWave("tico2.wav", from = startsb[d], to = stopsb[d], units = "minutes")
+	mic2 <- readWave(args[5], from = startsb[d], to = stopsb[d], units = "minutes")
 	two <- songtimes(mic2,Flatbirds,Sharpbirds,samplerate,Threshold,songcomb)
 	#kill mic2
 	mic2 <- NULL
-	mic3 <- readWave("tico2.wav", from = startsc[d], to = stopsc[d], units = "minutes")
+	mic3 <- readWave(args[6], from = startsc[d], to = stopsc[d], units = "minutes")
 	three <- songtimes(mic3,Flatbirds,Sharpbirds,samplerate,Threshold,songcomb)
 	#kill mic3
 	mic3 <- NULL
-	mic4 <- readWave("tico2.wav", from = startsd[d], to = stopsd[d], units = "minutes")
+	mic4 <- readWave(args[7], from = startsd[d], to = stopsd[d], units = "minutes")
 	four <- songtimes(mic4,Flatbirds,Sharpbirds,samplerate,Threshold,songcomb)
 	mic4 <- NULL
 
@@ -171,9 +173,9 @@ for (d in 1:length(starts)) {
 	DelayP[,1] <- Times
 	for(b in 1:length(Times)) {
 		#Next two are commented out since the wav file right now is just the test file
-		One <- readWave("tico2.wav", from = Times[b], to = Times[b]+1,
+		One <- readWave(args[4], from = Times[b], to = Times[b]+1,
 				units = "seconds")
-		Two <- readWave("tico2.wav", from = Times[b]+.001,
+		Two <- readWave(args[5], from = Times[b]+.001,
 				to = Times[b]+1.001, units = "seconds")
 		One <- cutw(One,from=0,to=1, output = "ts")
 		Two <- cutw(Two,from=0,to=1, output = "ts")
@@ -181,14 +183,14 @@ for (d in 1:length(starts)) {
 		#Two <- NULL
 		Timedelays[b,2] <- lag$lag
 		DelayP[b,2] <- lag$cor
-		Three <- readWave("tico2.wav", from = Times[b]+.002,
+		Three <- readWave(args[6], from = Times[b]+.002,
 				to = Times[b]+1.002, units = "seconds")
 		Three <- cutw(Three,from=0,to=1, output = "ts")
 		lag <- Max_CCF(One, Three)
 		#Three <- NULL
 		Timedelays[b,3] <- lag$lag
 		DelayP[b,3] <- lag$cor
-		Four <- readWave("tico2.wav", from = Times[b]+.003,
+		Four <- readWave(args[7], from = Times[b]+.003,
 				to = Times[b]+1.003, units = "seconds")
 		Four <- cutw(Four,from=0,to=1, output = "ts")
 		lag <- Max_CCF(One, Four)
