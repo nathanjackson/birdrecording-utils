@@ -211,19 +211,15 @@ for (d in 1:length(starts)) {
 	DelayP <- NULL
 
 	# Create Wav of Song.
-	print("Mic 1 Save")
 	final <- readWave(args[4], from = starts[d], to = stops[d], units = "minutes")
 	savewav(final, filename = paste("Audio",d,".wav",sep = ""))
 
-	print("Mic 2 Save")
 	final <- readWave(args[5], from = startsb[d], to = stopsb[d], units = "minutes")
 	savewav(final, filename = paste("Audio", d, ".wav", sep = ""))
 
-	print("Mic 3 Save")
 	final <- readWave(args[6], from = startsc[d], to = stopsc[d], units = "minutes")
 	savewav(final, filename = paste("Audio", d, ".wav", sep = ""))
 
-	print("Mic 4 Save")
 	final <- readWave(args[7], from = startsd[d], to = stopsd[d], units = "minutes")
 	savewav(final, filename = paste("Audio", d, ".wav", sep = ""))
 }
