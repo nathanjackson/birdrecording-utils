@@ -22,7 +22,7 @@ Flatbirds <- 2000
 Sharpbirds <- 6000
 samplerate <- 22050
 Threshold <- .1
-songcomb <- .2*samplerate
+songcomb <- .2 * samplerate
 MidFreq <- 3000
 Temperature <- 20
 Dist <- 1
@@ -210,11 +210,20 @@ for (d in 1:length(starts)) {
 	Timedelays <- NULL
 	DelayP <- NULL
 
-	#Make .flac files for each interval
-	#wav made,compressed and overwritten into a flac file.
-	#saving song
-	final <- readWave("tico2.wav", from = starts[d], to = stops[d], units = "minutes")
+	# Create Wav of Song.
+	print("Mic 1 Save")
+	final <- readWave(args[4], from = starts[d], to = stops[d], units = "minutes")
 	savewav(final, filename = paste("Audio",d,".wav",sep = ""))
-	wav2flac(paste("Audio",d,".wav", sep = ""), overwrite=TRUE)
-	final <- NULL
+
+	print("Mic 2 Save")
+	final <- readWave(args[5], from = startsb[d], to = stopsb[d], units = "minutes")
+	savewav(final, filename = paste("Audio", d, ".wav", sep = ""))
+
+	print("Mic 3 Save")
+	final <- readWave(args[6], from = startsc[d], to = stopsc[d], units = "minutes")
+	savewav(final, filename = paste("Audio", d, ".wav", sep = ""))
+
+	print("Mic 4 Save")
+	final <- readWave(args[7], from = startsd[d], to = stopsd[d], units = "minutes")
+	savewav(final, filename = paste("Audio", d, ".wav", sep = ""))
 }
